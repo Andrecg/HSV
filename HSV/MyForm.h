@@ -34,6 +34,16 @@ namespace HSV {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	protected:
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::TrackBar^  trackBar1;
+	private: System::Windows::Forms::TrackBar^  trackBar2;
+	private: System::Windows::Forms::TrackBar^  trackBar3;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  label3;
 
 	private:
 		/// <summary>
@@ -48,12 +58,129 @@ namespace HSV {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"MyForm";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
+			this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
+			this->trackBar3 = (gcnew System::Windows::Forms::TrackBar());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar3))->BeginInit();
+			this->SuspendLayout();
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Location = System::Drawing::Point(12, 74);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(399, 374);
+			this->pictureBox1->TabIndex = 0;
+			this->pictureBox1->TabStop = false;
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(12, 26);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(549, 20);
+			this->textBox1->TabIndex = 1;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(594, 25);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(103, 21);
+			this->button1->TabIndex = 2;
+			this->button1->Text = L"Select Image";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
+			// trackBar1
+			// 
+			this->trackBar1->Location = System::Drawing::Point(441, 144);
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Size = System::Drawing::Size(256, 45);
+			this->trackBar1->TabIndex = 3;
+			// 
+			// trackBar2
+			// 
+			this->trackBar2->Location = System::Drawing::Point(441, 247);
+			this->trackBar2->Name = L"trackBar2";
+			this->trackBar2->Size = System::Drawing::Size(256, 45);
+			this->trackBar2->TabIndex = 4;
+			// 
+			// trackBar3
+			// 
+			this->trackBar3->Location = System::Drawing::Point(441, 365);
+			this->trackBar3->Name = L"trackBar3";
+			this->trackBar3->Size = System::Drawing::Size(256, 45);
+			this->trackBar3->TabIndex = 5;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(552, 103);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(46, 24);
+			this->label1->TabIndex = 6;
+			this->label1->Text = L"Hue";
+			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(530, 220);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(93, 24);
+			this->label2->TabIndex = 7;
+			this->label2->Text = L"Saturation";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(552, 325);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(59, 24);
+			this->label3->TabIndex = 8;
+			this->label3->Text = L"Value";
+			// 
+			// MyForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(725, 470);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->trackBar3);
+			this->Controls->Add(this->trackBar2);
+			this->Controls->Add(this->trackBar1);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->pictureBox1);
+			this->Name = L"MyForm";
+			this->Text = L"MyForm";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar3))->EndInit();
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
-	};
+	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+};
 }
