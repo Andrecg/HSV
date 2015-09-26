@@ -1,5 +1,10 @@
 #pragma once
 
+#using <System.dll>
+#using <System.Windows.Forms.dll>
+#using <System.Drawing.dll>
+
+
 namespace HSV {
 
 	using namespace System;
@@ -8,16 +13,25 @@ namespace HSV {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+
 
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+
+	private:
+		bool fileOpened;
+	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
+			 String^ folderName;
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
+			fileOpened = false;
+			folderName = "";
 			//
 			//TODO: Add the constructor code here
 			//
@@ -36,7 +50,7 @@ namespace HSV {
 		}
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	protected:
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::TrackBar^  trackBar1;
 	private: System::Windows::Forms::TrackBar^  trackBar2;
@@ -44,6 +58,10 @@ namespace HSV {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
+
+
 
 	private:
 		/// <summary>
@@ -59,7 +77,6 @@ namespace HSV {
 		void InitializeComponent(void)
 		{
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
@@ -67,6 +84,9 @@ namespace HSV {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
@@ -75,18 +95,12 @@ namespace HSV {
 			// 
 			// pictureBox1
 			// 
+			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->pictureBox1->Location = System::Drawing::Point(12, 74);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(399, 374);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(12, 26);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(549, 20);
-			this->textBox1->TabIndex = 1;
 			// 
 			// button1
 			// 
@@ -153,6 +167,18 @@ namespace HSV {
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"Value";
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(12, 26);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(549, 20);
+			this->textBox1->TabIndex = 1;
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::openFileDialog1_FileOk);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -181,6 +207,14 @@ namespace HSV {
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->folderBrowserDialog1->RootFolder = Environment::SpecialFolder::Personal;
+	this->openFileDialog1->InitialDirectory = this->folderBrowserDialog1->SelectedPath;
+	System::Windows::Forms::DialogResult result = this->openFileDialog1->ShowDialog();
+}
+
+private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
+}
+private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
